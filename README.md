@@ -61,6 +61,8 @@ RecipesApp is a web application designed to make cooking easier by allowing user
    ```sh
    cd ../RecipesApp
    ionic serve
+   ou
+   ionic serve --host=0.0.0.0 (acesso a partir de qualquer dispositivo ligado à mesma rede)
     ```
 3.Open your browser and navigate to http://localhost:8100 to access the application.
 
