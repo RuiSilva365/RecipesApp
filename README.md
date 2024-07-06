@@ -63,3 +63,24 @@ RecipesApp is a web application designed to make cooking easier by allowing user
    ionic serve
     ```
 3.Open your browser and navigate to http://localhost:8100 to access the application.
+
+##Usage
+###Admin Features
+Login as an admin to create, update, or delete recipes.
+###User Features
+Register and login to browse and view recipes.
+Users can save their favorite recipes (feature in progress).
+
+##Contributing
+Fork the repository
+Create your feature branch (git checkout -b feature/AmazingFeature)
+Commit your changes (git commit -m 'Add some AmazingFeature')
+Push to the branch (git push origin feature/AmazingFeature)
+Open a Pull Request
+
+##License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+##Acknowledgements
+Thanks to all the contributors and the open-source community.
+Special thanks to Ionic and Angular for providing great tools for building web applications.
