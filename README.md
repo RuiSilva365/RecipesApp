@@ -29,3 +29,15 @@ RecipesApp is a web application designed to make cooking easier by allowing user
    ```sh
    git clone https://github.com/your-username/TP_PROJ2.git
    cd TP_PROJ2
+    ```
+Set up the backend:
+ ```sh
+   cd my-app-server
+   npm install
+    ```
+Set up the frontend:
+```sh
+Copiar código
+cd ../RecipesApp
+npm install
+```
