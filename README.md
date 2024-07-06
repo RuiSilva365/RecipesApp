@@ -50,3 +50,16 @@ RecipesApp is a web application designed to make cooking easier by allowing user
     ```   
 5.Initialize the MySQL database:
    Create the database and tables as specified in the server.js file or run the SQL script provided.
+
+### Running
+1. Start the backend server:
+   ```sh
+   cd my-app-server
+   node src/backend/server.js
+    ```
+2. Start the frontend server:
+   ```sh
+   cd ../RecipesApp
+   ionic serve
+    ```
+3.Open your browser and navigate to http://localhost:8100 to access the application.
