@@ -40,9 +40,13 @@ RecipesApp is a web application designed to make cooking easier by allowing user
    cd ../RecipesApp
    npm install
     ```   
-Set up the frontend:
-```sh
-Copiar código
-cd ../RecipesApp
-npm install
-```
+4. Create a '.env' file in the my-app-server directory with the following content:
+   ```sh
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=yourpassword
+   DB_NAME=recipes_db
+   JWT_SECRET=your_jwt_secret
+    ```   
+5.Initialize the MySQL database:
+   Create the database and tables as specified in the server.js file or run the SQL script provided.
