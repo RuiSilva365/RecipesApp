@@ -1,81 +1,88 @@
-RecipesApp
+# RecipesApp
+
 RecipesApp is a web application designed to make cooking easier by allowing users to browse, create, and manage recipes. This project uses Ionic for the frontend and Node.js with Express for the backend.
 
-Features
-User authentication (login and registration)
-Role-based access control (admin and user)
-Create, read, update, and delete (CRUD) operations for recipes
-Responsive design
-Technologies Used
-Frontend: Ionic, Angular
-Backend: Node.js, Express, MySQL
-Authentication: JSON Web Tokens (JWT)
-Getting Started
-Prerequisites
-Node.js
-npm
-MySQL
-Installation
-Clone the repository:
+## Features
 
-sh
-Copiar código
-git clone https://github.com/your-username/TP_PROJ2.git
-cd TP_PROJ2
-Set up the backend:
+- **User authentication** (login and registration)
+- **Role-based access control** (admin and user)
+- **Create, read, update, and delete (CRUD)** operations for recipes
+- **Responsive design**
 
-sh
-Copiar código
-cd my-app-server
-npm install
-Set up the frontend:
+## Technologies Used
 
-sh
-Copiar código
-cd ../RecipesApp
-npm install
-Create a .env file in the my-app-server directory with the following content:
+- **Frontend**: [Ionic](https://ionicframework.com/), [Angular](https://angular.io/)
+- **Backend**: [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), [MySQL](https://www.mysql.com/)
+- **Authentication**: [JSON Web Tokens (JWT)](https://jwt.io/)
 
-sh
-Copiar código
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=yourpassword
-DB_NAME=recipes_db
-JWT_SECRET=your_jwt_secret
-Initialize the MySQL database:
+## Getting Started
 
-Create the database and tables as specified in the server.js file or run the SQL script provided.
-Running the Application
-Start the backend server:
+### Prerequisites
 
-sh
-Copiar código
-cd my-app-server
-node src/backend/server.js
-Start the frontend application:
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+- [MySQL](https://www.mysql.com/)
 
-sh
-Copiar código
-cd ../RecipesApp
-ionic serve
-Open your browser and navigate to http://localhost:8100 to access the application.
+### Installation
 
-Usage
-Admin Features
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/TP_PROJ2.git
+   cd TP_PROJ2
+    ```
+2. Set up the backend:
+   ```sh
+   cd my-app-server
+   npm install
+    ```   
+3. Set up the frontend:
+   ```sh
+   cd ../RecipesApp
+   npm install
+    ```   
+4. Create a '.env' file in the my-app-server directory with the following content:
+   ```sh
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=yourpassword
+   DB_NAME=recipes_db
+   JWT_SECRET=your_jwt_secret
+    ```   
+5.Initialize the MySQL database:
+   Create the database and tables as specified in the server.js file or run the SQL script provided.
+
+### Running
+1. Start the backend server:
+   ```sh
+   cd my-app-server
+   node src/backend/server.js
+    ```
+2. Start the frontend server:
+   ```sh
+   cd ../RecipesApp
+   ionic serve
+   ou
+   ionic serve --host=0.0.0.0 (acesso a partir de qualquer dispositivo ligado à mesma rede)
+    ```
+3.Open your browser and navigate to http://localhost:8100 to access the application.
+
+## Usage
+### Admin Features
 Login as an admin to create, update, or delete recipes.
-User Features
+### User Features
 Register and login to browse and view recipes.
 Users can save their favorite recipes (feature in progress).
-Contributing
+
+## Contributing
 Fork the repository
 Create your feature branch (git checkout -b feature/AmazingFeature)
 Commit your changes (git commit -m 'Add some AmazingFeature')
 Push to the branch (git push origin feature/AmazingFeature)
 Open a Pull Request
-License
+
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Acknowledgements
+## Acknowledgements
 Thanks to all the contributors and the open-source community.
-Special thanks to Ionic and Angular for providing great tools for building web applications
+Special thanks to Ionic and Angular for providing great tools for building web applications.
