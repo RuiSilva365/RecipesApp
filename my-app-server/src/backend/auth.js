@@ -31,7 +31,7 @@ module.exports = function (app, connection) {
 
   // Middleware para proteger rotas de administrador
   const authenticateAdmin = (req, res, next) => {
-    const token = req.header('Authorization');
+    const token = req.header('Authorization').replace('Bearer ', '');
     if (!token) return res.status(401).send('Access Denied');
     jwt.verify(token, secretKey, (err, user) => {
       if (err) return res.status(403).send('Invalid Token');
@@ -41,5 +41,5 @@ module.exports = function (app, connection) {
     });
   };
 
-  module.exports.authenticateAdmin = authenticateAdmin;
+  module.exports.authenticateAdmin = authenticateAdmin; // Exporta authenticateAdmin
 };
