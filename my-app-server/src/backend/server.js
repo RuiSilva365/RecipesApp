@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const secretKey = 'your_jwt_secret';
 
 const app = express();
 const port = 3000;
@@ -22,3 +24,16 @@ app.use('/recipes', recipeRoutes);
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+// Middleware para autenticar o usuário
+const authenticateUser = (req, res, next) => {
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+  if (!token) return res.status(401).send('Access Denied');
+  jwt.verify(token, secretKey, (err, user) => {
+    if (err) return res.status(403).send('Invalid Token');
+    req.user = user;
+    next();
+  });
+};
+
+
