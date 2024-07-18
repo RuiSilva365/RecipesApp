@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host: 'https://clever-arriving-turkey.ngrok-free.app',
+  host: 'localhost',
   user: 'root',
   password: 'admin',
   database: 'recipes_db'

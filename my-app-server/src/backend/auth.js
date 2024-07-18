@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const secretKey = 'your_jwt_secret';
 
 module.exports = function (app, connection) {
-  // Rota de registro
+  // Register route
   app.post('/auth/register', (req, res) => {
     const { email, password, role } = req.body;
     const query = 'INSERT INTO users (email, password, role) VALUES (?, ?, ?)';
@@ -13,7 +13,7 @@ module.exports = function (app, connection) {
     });
   });
 
-  // Rota de login
+  // Login route
   app.post('/auth/login', (req, res) => {
     const { email, password } = req.body;
     const query = 'SELECT * FROM users WHERE email = ? AND password = ?';
@@ -29,20 +29,30 @@ module.exports = function (app, connection) {
     });
   });
 
-  // Middleware para proteger rotas autenticadas
-  const authenticateUser = (req, res, next) => {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+  // Get profile route
+  app.get('/api/profile', (req, res) => {
+    const token = req.header('Authorization').replace('Bearer ', '');
     if (!token) return res.status(401).send('Access Denied');
     jwt.verify(token, secretKey, (err, user) => {
       if (err) return res.status(403).send('Invalid Token');
-      req.user = user;
-      next();
+      const query = 'SELECT * FROM users WHERE id = ?';
+      connection.query(query, [user.userId], (err, results) => {
+        if (err) return res.status(500).send(err);
+        if (results.length === 0) return res.status(404).send('User not found');
+        const userProfile = {
+          name: results[0].name || 'User Name',
+          email: results[0].email,
+          avatarUrl : results[0].profile_image, //role === 'admin' ? 'assets/icon/admin_icon.png' : 'assets/icon/user_icon.png',
+          bio: results[0].bio
+        };
+        res.status(200).json(userProfile);
+      });
     });
-  };
+  });
 
-  // Middleware para proteger rotas de administrador
+  // Middleware for admin routes
   const authenticateAdmin = (req, res, next) => {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+    const token = req.header('Authorization').replace('Bearer ', '');
     if (!token) return res.status(401).send('Access Denied');
     jwt.verify(token, secretKey, (err, user) => {
       if (err) return res.status(403).send('Invalid Token');
@@ -52,22 +62,5 @@ module.exports = function (app, connection) {
     });
   };
 
-  // Rota para buscar perfil do usuário
-  app.get('/api/profile', authenticateUser, (req, res) => {
-    const query = 'SELECT id, email, role, avatar FROM users WHERE id = ?';
-    connection.query(query, [req.user.userId], (err, results) => {
-      if (err) return res.status(500).send(err);
-      if (results.length === 0) return res.status(404).send('User not found');
-      const userProfile = {
-        name: results[0].name || 'User Name',
-        email: results[0].email,
-        avatarUrl: results[0].role === 'admin' ? 'assets/icon/admin_icon.png' : 'assets/icon/user_icon.png',
-        bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.'
-      };
-      res.status(200).json(userProfile);
-    });
-  });
-
-  module.exports.authenticateUser = authenticateUser;
   module.exports.authenticateAdmin = authenticateAdmin;
 };
