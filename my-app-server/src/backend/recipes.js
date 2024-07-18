@@ -4,13 +4,11 @@ const connection = require('./db');
 
 const router = express.Router();
 
-// Helper function to send error responses
 const sendErrorResponse = (res, message, status = 500) => res.status(status).json({ error: message });
 
 router.post('/', authenticateAdmin, (req, res) => {
   const { title, description, imageUrl, ingredients, instructions, servings, prepTime, ingredientQuantities } = req.body;
 
-  // Validate required fields
   if (!title || !description || !ingredients || !instructions) {
     return sendErrorResponse(res, 'Title, description, ingredients, and instructions are required', 400);
   }
@@ -45,12 +43,12 @@ router.get('/:id', (req, res) => {
 
     const recipe = results[0];
     try {
-      recipe.ingredientQuantities = JSON.parse(recipe.ingredientQuantities); // Parse JSON
-      recipe.instructions = JSON.parse(recipe.instructions); // Parse instructions as JSON
+      recipe.ingredientQuantities = JSON.parse(recipe.ingredientQuantities);
+      recipe.instructions = JSON.parse(recipe.instructions);
     } catch (e) {
       return sendErrorResponse(res, 'Error parsing ingredient quantities or instructions', 500);
     }
-    recipe.images = recipe.images ? recipe.images.split(',') : []; // Parse images
+    recipe.images = recipe.images ? recipe.images.split(',') : [];
     res.json(recipe);
   });
 });
